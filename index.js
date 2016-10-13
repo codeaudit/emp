@@ -5,6 +5,7 @@ var usage = require('./lib/usage')
 var config = require('./lib/config')
 var auth = require('./lib/auth')
 var run = require('./lib/run')
+const runInteractive = require('./lib/run-interactive')
 const replicate = require('./lib/replicate')
 var logger = require('./lib/logger')
 var read = require('read')
@@ -69,6 +70,13 @@ function execute (args) {
         return Promise.reject()
       })
     case 'run':
+      if (args.interactive || args.i) {
+        console.log('GONNA RUN INTERACTIVE')
+        return runInteractive({
+          protocol: args._[3],
+          code_path: args._[4]
+        }, logger)
+      }
       if (args.help || args.h) {
         usage.run()
         return Promise.resolve()
@@ -103,7 +111,7 @@ function execute (args) {
 }
 
 config.load().then(function () {
-  var argv = require('minimist')(process.argv, {boolean: 'dir'})
+  var argv = require('minimist')(process.argv, {boolean: ['dir', 'interactive', 'i']})
   client.init({
     host: process.env.EMPIRICAL_HOST,
     auth: process.env.EMPIRICAL_AUTH
