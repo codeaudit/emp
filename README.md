@@ -111,12 +111,13 @@ emp configure
 
 ### GPU Support
 
-GPU support is provided for Linux via the 
-[nvidia-docker-plugin](https://github.com/NVIDIA/nvidia-docker).
+GPU support is provided for Linux via [nvidia-docker](https://github.com/NVIDIA/nvidia-docker).
 Follow the instructions on the ["Quick start"](https://github.com/NVIDIA/nvidia-docker#quick-start) to install it.
 
 Currently Windows and MacOS are not supported since they
 rely on VMs to run Docker. See [this issue](https://github.com/NVIDIA/nvidia-docker/issues/101) for more information.
+
+Learn how to run GPU enabled experiments [here](http://empiricalci.com/docs/gpu-support)
 
 ### About Docker on Windows
 
